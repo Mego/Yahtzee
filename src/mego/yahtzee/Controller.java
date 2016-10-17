@@ -13,11 +13,10 @@ public class Controller implements ControllerInterface {
 	private static final int NUM_ROUNDS = 1000;
 	
 	private HashMap<Player, Scorecard> scorecards;
-	private Random rand;
+	private static final Random rand = new Random(new Date().getTime());
 	
 	private Controller() {
 		this.scorecards = new HashMap<Player, Scorecard>();
-		this.rand = new Random(new Date().getTime());
 	}
 	
 	private void setPlayers(Player... players) {
@@ -90,7 +89,7 @@ public class Controller implements ControllerInterface {
 			System.out.println("----- GAME #" + i + " -----");
 			game.setPlayers(players);
 			game.runGame();
-			int maxScore = game.scorecards.values().stream().mapToInt(board -> board.getScore()).max().getAsInt();
+			int maxScore = game.scorecards.values().stream().mapToInt(card -> card.getScore()).max().getAsInt();
 			Player[] winners = game.scorecards.entrySet().stream().filter(e -> e.getValue().getScore() == maxScore).map(e -> e.getKey()).toArray(Player[]::new);
 			System.out.print("Top scorers (" + maxScore + "):");
 			for(Player winner: winners) {
