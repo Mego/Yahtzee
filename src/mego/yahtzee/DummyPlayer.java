@@ -18,6 +18,11 @@ public class DummyPlayer extends Player {
 				choice = Category.YAHTZEE;
 			} else if(Stream.of(choices).filter(c -> c == Util.intToUpperCategory(dice[0])).count() > 0) {
 				choice = Util.intToUpperCategory(dice[0]);
+			} else {
+				choices = Stream.of(choices).filter(c -> IntStream.rangeClosed(1, 6).mapToObj(x -> Util.intToUpperCategory(x)).noneMatch(x -> x == c)).toArray(Category[]::new);
+				if(choices.length > 0) {
+					choice = choices[new Random().nextInt(choices.length)];
+				}
 			}
 		}
 		return new TurnChoice(choice);

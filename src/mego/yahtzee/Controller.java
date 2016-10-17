@@ -55,7 +55,7 @@ public class Controller implements ControllerInterface {
 	}
 
 	private void doTurn() {
-		HashMap<Player, Scorecard> newBoards = new HashMap<Player, Scorecard>();
+		HashMap<Player, Scorecard> newCards = new HashMap<Player, Scorecard>();
 		for(Player p: this.scorecards.keySet()) {
 			TurnChoice choice = null;
 			int stage = 0;
@@ -74,11 +74,11 @@ public class Controller implements ControllerInterface {
 			if(choice.getCategory() == null) {
 				continue;
 			}
-			Scorecard board = this.scorecards.get(p);
-			board.setScore(choice.getCategory(), dice);
-			newBoards.put(p, board);
+			Scorecard card = this.scorecards.get(p);
+			card.setScore(choice.getCategory(), dice);
+			newCards.put(p, card);
 		}
-		this.scorecards = newBoards;
+		this.scorecards = newCards;
 	}
 	
 	public static void main(String[] args) {
