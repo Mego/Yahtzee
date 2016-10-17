@@ -69,6 +69,8 @@ public class Scorecard implements ScorecardInterface {
 			Category upper = Util.intToUpperCategory(face);
 			if(!scores.containsKey(upper) && c != upper) {
 				throw new IllegalArgumentException();
+			} else if(c.isUpper() && Stream.of(this.getFreeCategories()).filter(x -> x.isLower()).count() > 0) {
+				throw new IllegalArgumentException();
 			}
 			this.yahtzeeBonus += 100;
 			joker = true;
