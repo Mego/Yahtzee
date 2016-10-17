@@ -13,5 +13,23 @@ public enum Category {
 	SMALL_STRAIGHT,
 	LARGE_STRAIGHT,
 	YAHTZEE,
-	CHANCE	
+	CHANCE;
+	
+	public boolean isUpper() {
+		switch(this) {
+		case ACES:
+		case TWOS:
+		case THREES:
+		case FOURS:
+		case FIVES:
+		case SIXES:
+			return true;
+		default:
+			return false;
+		}
+	}
+	
+	public boolean isLower() {
+		return !this.isUpper();
+	}
 }
