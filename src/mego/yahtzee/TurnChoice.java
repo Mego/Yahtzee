@@ -6,6 +6,7 @@ public class TurnChoice {
 	private int[] diceSaved;
 	private Category categoryChosen;
 	
+	// save the dice with the specified indexes (0-4 inclusive)
 	public TurnChoice(int[] diceIndexes) {
 		for(int index: diceIndexes) {
 			if(IntStream.of(diceIndexes).filter(i -> i == index).count() > 1) {
@@ -19,6 +20,7 @@ public class TurnChoice {
 		this.categoryChosen = null;
 	}
 	
+	// use the current dice for specified category
 	public TurnChoice(Category categoryChosen) {
 		this.categoryChosen = categoryChosen;
 		this.diceSaved = new int[0];
