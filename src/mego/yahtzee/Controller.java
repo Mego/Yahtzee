@@ -59,7 +59,7 @@ public class Controller implements ControllerInterface {
 			TurnChoice choice = null;
 			int stage = 0;
 			int[] dice = null;
-			while(stage < 3 && (choice == null || choice.getCategory() != null)) {
+			while(stage < 3 && (choice == null || choice.getCategory() == null)) {
 				int[] saved = {};
 				if(choice != null) {
 					List<Integer> diceList = Arrays.asList(Util.boxIntArray(dice));
