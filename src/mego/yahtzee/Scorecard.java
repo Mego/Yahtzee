@@ -65,11 +65,13 @@ public class Scorecard implements ScorecardInterface {
 	public void setScore(Category c, int[] dice) {
 		boolean joker = false;
 		if(scores.containsKey(Category.YAHTZEE) && IntStream.of(dice).distinct().count() == 1) {
+			// thanks to @TNT from PPCG.SE for help with this logic (http://chat.stackexchange.com/transcript/message/33233446#33233446)
 			int face = dice[0];
 			Category upper = Util.intToUpperCategory(face);
-			if(!scores.containsKey(upper) && c != upper) {
+			boolean isUpperTaken = scores.containsKey(upper);
+			if(!isUpperTaken && c != upper) {
 				throw new IllegalArgumentException();
-			} else if(c.isUpper() && Stream.of(this.getFreeCategories()).filter(x -> x.isLower()).count() > 0) {
+			} else if(isUpperTaken && c.isUpper() && Stream.of(this.getFreeCategories()).filter(x -> x.isLower()).count() > 0) {
 				throw new IllegalArgumentException();
 			}
 			this.yahtzeeBonus += 100;
